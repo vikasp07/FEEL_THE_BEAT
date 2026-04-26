@@ -22,16 +22,17 @@ export default function Testimonials() {
   const current = testimonials[index];
 
   return (
-    <section className="relative py-20">
+    <section className="section-wrap">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: false, amount: 0.35 }}
           className="mx-auto mb-10 max-w-3xl text-center"
         >
-          <h2 className="font-display text-5xl text-white sm:text-6xl">Testimonials</h2>
-          <p className="mt-4 text-slate-300">Stories from dancers, parents, and performers in our academy community.</p>
+          <h2 className="section-title">Testimonials</h2>
+          <p className="section-lead text-white/80">Stories from dancers, parents, and performers in our academy community.</p>
         </motion.div>
 
         <Card className="mx-auto max-w-5xl rounded-3xl p-6 sm:p-8" gradient>
@@ -44,15 +45,15 @@ export default function Testimonials() {
           >
             <div>
               <div className="relative h-64 overflow-hidden rounded-2xl border border-white/15">
-                <Image src={current.image} alt={`${current.name} testimonial`} fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                <Image src={current.image} alt={`${current.name} testimonial`} fill sizes="(max-width: 768px) 100vw, 320px" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               </div>
 
-              <div className="mt-4 rounded-xl border border-white/15 bg-slate-900/55 p-3 text-sm text-slate-200">
+              <div className="mt-4 rounded-xl border border-red-500/30 bg-black/50 p-3 text-sm text-white">
                 {current.video ? (
-                  <span className="inline-flex items-center gap-2 text-pink-200"><PlayCircle className="h-4 w-4" /> Video-style review</span>
+                  <span className="inline-flex items-center gap-2 text-red-200"><PlayCircle className="h-4 w-4" /> Video-style review</span>
                 ) : (
-                  <span className="inline-flex items-center gap-2 text-cyan-200"><Volume2 className="h-4 w-4" /> Voice-style review</span>
+                  <span className="inline-flex items-center gap-2 text-red-300"><Volume2 className="h-4 w-4" /> Voice-style review</span>
                 )}
               </div>
             </div>
@@ -60,7 +61,7 @@ export default function Testimonials() {
             <div>
               <div className="flex items-center gap-1">
                 {Array.from({ length: current.rating }).map((_, starIndex) => (
-                  <Star key={`${current.id}-${starIndex}`} className="h-4 w-4 fill-yellow-400 text-yellow-300" />
+                  <Star key={`${current.id}-${starIndex}`} className="h-4 w-4 fill-red-500 text-red-300" />
                 ))}
               </div>
 
@@ -70,7 +71,7 @@ export default function Testimonials() {
 
               <div className="mt-5">
                 <p className="text-lg font-semibold text-white">{current.name}</p>
-                <p className="text-sm text-slate-300">{current.role}</p>
+                <p className="text-sm text-white">{current.role}</p>
               </div>
 
               <div className="mt-6 flex items-center gap-3">
@@ -90,7 +91,7 @@ export default function Testimonials() {
                 key={item.id}
                 type="button"
                 onClick={() => setIndex(dotIndex)}
-                className={`h-2.5 rounded-full transition-all ${dotIndex === index ? "w-8 bg-cyan-300" : "w-2.5 bg-white/30"}`}
+                className={`h-2.5 rounded-full transition-all ${dotIndex === index ? "w-8 bg-red-400" : "w-2.5 bg-white/30"}`}
                 aria-label={`Go to testimonial ${dotIndex + 1}`}
               />
             ))}

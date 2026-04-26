@@ -5,6 +5,7 @@ import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import BeatToggle from "@/components/ui/BeatToggle";
+import InitialLoader from "@/components/ui/InitialLoader";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -62,13 +63,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${manrope.variable} ${bebas.variable} font-body`}>
-        <div className="relative min-h-screen beat-active">
-          <Navbar />
-          <BeatToggle />
-          <main className="pt-20 md:pt-24">{children}</main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
+        <InitialLoader durationMs={2800}>
+          <div className="relative min-h-screen">
+            <Navbar />
+            <BeatToggle />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+        </InitialLoader>
       </body>
     </html>
   );

@@ -54,16 +54,17 @@ export default function DanceTribe() {
   }, [selectedStyle]);
 
   return (
-    <section className="relative py-20">
+    <section className="section-wrap">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: false, amount: 0.35 }}
           className="mx-auto mb-10 max-w-3xl text-center"
         >
-          <h2 className="font-display text-5xl text-white sm:text-6xl">Find Your Dance Tribe</h2>
-          <p className="mt-4 text-slate-300">
+          <h2 className="section-title">Find Your Dance Tribe</h2>
+          <p className="section-lead text-white/80">
             Match with a community group based on your age and favorite style.
           </p>
         </motion.div>
@@ -71,11 +72,11 @@ export default function DanceTribe() {
         <Card className="mx-auto max-w-4xl rounded-3xl p-6 sm:p-8">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="text-sm text-slate-200">Select Age Group</label>
+              <label className="text-sm text-white/90">Select Age Group</label>
               <select
                 value={selectedAge}
                 onChange={(event) => setSelectedAge(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-white outline-none"
+                className="mt-2 w-full rounded-xl border border-white/10 bg-black/60 px-3 py-2 text-white outline-none"
               >
                 <option value="">Choose age group</option>
                 {ageGroups.map((age) => (
@@ -87,11 +88,11 @@ export default function DanceTribe() {
             </div>
 
             <div>
-              <label className="text-sm text-slate-200">Preferred Style</label>
+              <label className="text-sm text-white/90">Preferred Style</label>
               <select
                 value={selectedStyle}
                 onChange={(event) => setSelectedStyle(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-white outline-none"
+                className="mt-2 w-full rounded-xl border border-white/10 bg-black/60 px-3 py-2 text-white outline-none"
               >
                 <option value="">Choose style</option>
                 {styles.map((style) => (
@@ -126,14 +127,14 @@ export default function DanceTribe() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h3 className="text-xl font-semibold text-white">{tribe.name}</h3>
-                      <p className="mt-1 text-sm text-slate-300">{tribe.vibe}</p>
+                      <p className="mt-1 text-sm text-white/80">{tribe.vibe}</p>
                     </div>
-                    <div className="rounded-full bg-cyan-500/20 p-2 text-cyan-100">
+                    <div className="rounded-full bg-red-500/25 p-2 text-red-100">
                       <UsersRound className="h-5 w-5" />
                     </div>
                   </div>
 
-                  <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-200">
+                  <div className="mt-4 flex flex-wrap gap-2 text-xs text-white/90">
                     <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">Style: {tribe.style}</span>
                     <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">Age: {tribe.age}</span>
                     <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">{tribe.members} Members</span>

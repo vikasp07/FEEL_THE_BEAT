@@ -71,21 +71,21 @@ export default function ImageUpload() {
         canvas.width * 0.65,
       );
 
-      glow.addColorStop(0, "rgba(255, 105, 199, 0.30)");
-      glow.addColorStop(0.4, "rgba(37, 175, 255, 0.20)");
-      glow.addColorStop(1, "rgba(3, 7, 18, 0.55)");
+      glow.addColorStop(0, "rgba(255, 0, 0, 0.30)");
+      glow.addColorStop(0.4, "rgba(255, 0, 0, 0.18)");
+      glow.addColorStop(1, "rgba(0, 0, 0, 0.58)");
 
       context.fillStyle = glow;
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      context.fillStyle = "rgba(5, 8, 22, 0.75)";
+      context.fillStyle = "rgba(0, 0, 0, 0.75)";
       context.fillRect(0, canvas.height - 95, canvas.width, 95);
 
-      context.fillStyle = "#f5f9ff";
+      context.fillStyle = "#ffffff";
       context.font = `${Math.max(18, canvas.width * 0.03)}px sans-serif`;
       context.fillText("See Yourself Dancing Here", 24, canvas.height - 56);
 
-      context.fillStyle = "rgba(168, 226, 255, 0.95)";
+      context.fillStyle = "rgba(255, 0, 0, 0.95)";
       context.font = `${Math.max(16, canvas.width * 0.024)}px sans-serif`;
       context.fillText("Aniket's Feel The Beat Dance Academy", 24, canvas.height - 28);
 
@@ -104,12 +104,12 @@ export default function ImageUpload() {
           viewport={{ once: true }}
           className="mx-auto mb-10 max-w-3xl text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-500/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-red-500/50 bg-red-500/15 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
             <Sparkles className="h-4 w-4" />
             See Yourself Dancing Here
           </div>
           <h2 className="font-display text-5xl text-white sm:text-6xl">Upload Your Moment</h2>
-          <p className="mt-4 text-slate-300">
+          <p className="mt-4 text-white">
             Upload an image or short video and preview it with studio glow and academy watermark.
           </p>
         </motion.div>
@@ -120,11 +120,11 @@ export default function ImageUpload() {
               <button
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="beat-reactive flex h-52 w-full flex-col items-center justify-center rounded-2xl border border-dashed border-cyan-300/40 bg-cyan-400/5 text-cyan-100 transition-colors hover:bg-cyan-400/10"
+                className="beat-reactive flex h-52 w-full flex-col items-center justify-center rounded-2xl border border-dashed border-red-500/40 bg-red-400/5 text-red-200 transition-colors hover:bg-red-400/10"
               >
                 <UploadCloud className="h-10 w-10" />
                 <span className="mt-3 text-sm font-semibold">Upload Image or Video</span>
-                <span className="mt-1 text-xs text-slate-300">JPG, PNG, MP4 supported</span>
+                <span className="mt-1 text-xs text-white">JPG, PNG, MP4 supported</span>
               </button>
 
               <input
@@ -157,7 +157,7 @@ export default function ImageUpload() {
 
             <div>
               {!previewSrc ? (
-                <div className="flex h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-slate-900/45 text-slate-400">
+                <div className="flex h-[320px] items-center justify-center rounded-2xl border border-white/10 bg-black/40 text-white">
                   Upload media to preview your dance vibe
                 </div>
               ) : (
@@ -165,22 +165,23 @@ export default function ImageUpload() {
                   {mediaType === "video" ? (
                     <div className="relative h-[320px] bg-black">
                       <video src={previewSrc} controls className="h-full w-full object-cover" />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-cyan-400/10" />
-                      <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-slate-950/65 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-100">
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-red-400/10" />
+                      <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-black/65 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
                         <Video className="mr-2 inline h-3.5 w-3.5" /> Feel The Beat
                       </div>
                     </div>
                   ) : (
-                    <div className="relative h-[320px] bg-slate-900">
+                    <div className="relative h-[320px] bg-black">
                       <Image
                         src={processedSrc ?? previewSrc}
                         alt="Uploaded dance preview with studio overlay"
                         fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
                         unoptimized
                         className="object-cover"
                       />
                       {!processedSrc ? (
-                        <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-slate-950/65 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-100">
+                        <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-black/65 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
                           <ImagePlus className="mr-2 inline h-3.5 w-3.5" /> Raw Preview
                         </div>
                       ) : null}

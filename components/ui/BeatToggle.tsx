@@ -99,12 +99,12 @@ export default function BeatToggle() {
       onClick={toggle}
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.04 }}
-      className="beat-reactive fixed left-4 top-24 z-[60] inline-flex items-center gap-2 rounded-full border border-cyan-400/35 bg-slate-950/70 px-4 py-2 text-sm text-white shadow-lg shadow-cyan-500/20 backdrop-blur md:left-6 md:top-28"
+      className="beat-reactive fixed left-4 top-24 z-[60] inline-flex items-center gap-2 rounded-full border border-red-500/35 bg-black/70 px-4 py-2 text-sm text-white shadow-lg shadow-red-500/20 backdrop-blur md:left-6 md:top-28"
       aria-label={isPlaying ? "Pause beat background audio" : "Play beat background audio"}
     >
-      <Waves className="h-4 w-4 text-cyan-300" />
+      <Waves className="h-4 w-4 text-red-300" />
       <span className="hidden sm:inline">Beat Mode</span>
-      {isPlaying ? <Pause className="h-4 w-4 text-pink-300" /> : <Play className="h-4 w-4 text-pink-300" />}
+      {isPlaying ? <Pause className="h-4 w-4 text-red-300" /> : <Play className="h-4 w-4 text-red-300" />}
     </motion.button>
   );
 }

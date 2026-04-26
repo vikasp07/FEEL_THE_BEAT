@@ -3,15 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #05050b;
-  --foreground: #f5f9ff;
-  --surface: rgba(13, 16, 29, 0.72);
-  --surface-border: rgba(110, 146, 255, 0.24);
-  --neon-cyan: #00c2ff;
-  --neon-blue: #4d7cff;
-  --neon-pink: #ff3ea5;
-  --neon-violet: #9f7bff;
-  --grid-line: rgba(105, 131, 255, 0.1);
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: rgba(0, 0, 0, 0.85);
+  --surface-border: rgba(255, 0, 0, 0.3);
+  --neon-red: #ff0000;
+  --neon-dark-red: #cc0000;
+  --neon-light-red: #ff3333;
+  --neon-white: #ffffff;
+  --grid-line: rgba(255, 0, 0, 0.1);
+  --section-bg: rgba(20, 5, 5, 0.6);
+  --section-glow: rgba(255, 50, 50, 0.15);
 }
 
 html {
@@ -23,11 +25,6 @@ body {
   box-sizing: border-box;
   color: var(--foreground);
   background: var(--background);
-  background-image:
-    radial-gradient(circle at 10% 18%, rgba(0, 194, 255, 0.2), transparent 30%),
-    radial-gradient(circle at 85% 12%, rgba(255, 62, 165, 0.2), transparent 28%),
-    radial-gradient(circle at 60% 82%, rgba(77, 124, 255, 0.18), transparent 30%),
-    linear-gradient(135deg, #05050b 0%, #070b16 55%, #05050b 100%);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -68,8 +65,8 @@ body {
   .neon-ring {
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 0 18px rgba(0, 194, 255, 0.32),
-      0 0 38px rgba(255, 62, 165, 0.22);
+      0 0 18px rgba(255, 0, 0, 0.32),
+      0 0 38px rgba(255, 0, 0, 0.22);
   }
 
   .beat-reactive {
@@ -87,6 +84,31 @@ body {
       linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 46px 46px;
   }
+
+  .section-wrap {
+    @apply relative py-24;
+    background: linear-gradient(135deg, var(--section-bg) 0%, rgba(40, 10, 10, 0.5) 50%, var(--section-bg) 100%);
+    box-shadow: 
+      inset 0 0 100px var(--section-glow),
+      inset 0 0 50px rgba(255, 0, 0, 0.1);
+  }
+
+  .section-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 50, 50, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    animation: sectionPulse 8s ease-in-out infinite;
+  }
+
+  .section-title {
+    @apply font-display text-5xl leading-[0.95] tracking-[0.03em] text-white sm:text-6xl lg:text-7xl;
+  }
+
+  .section-lead {
+    @apply mx-auto mt-4 max-w-3xl text-sm text-white/85 sm:text-base md:text-lg;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -98,26 +120,64 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-pink));
+  background: linear-gradient(to bottom, var(--neon-red), var(--neon-dark-red));
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, var(--neon-blue), var(--neon-violet));
+  background: linear-gradient(to bottom, var(--neon-light-red), var(--neon-red));
 }
 
 @keyframes beatPulse {
   0%,
   100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 0 rgba(0, 194, 255, 0));
+    filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
   }
   45% {
     transform: scale(1.03);
-    filter: drop-shadow(0 0 10px rgba(255, 62, 165, 0.26));
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.26));
   }
   70% {
     transform: scale(1.015);
+  }
+}
+
+@keyframes sectionPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+  }
+  66% {
+    transform: translateY(-5px) rotateX(-2deg) rotateY(-2deg);
+  }
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(255, 50, 50, 0.3),
+      0 0 40px rgba(255, 50, 50, 0.2),
+      inset 0 0 20px rgba(255, 50, 50, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(255, 50, 50, 0.5),
+      0 0 60px rgba(255, 50, 50, 0.3),
+      inset 0 0 30px rgba(255, 50, 50, 0.2);
   }
 }
 
@@ -136,4 +196,21 @@ body {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+.animate-float-3d {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+.animate-card-glow {
+  animation: cardGlow 4s ease-in-out infinite;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) rotateX(5deg) rotateY(5deg) scale(1.02);
 }

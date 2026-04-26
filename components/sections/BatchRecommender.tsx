@@ -63,20 +63,21 @@ export default function BatchRecommender() {
   };
 
   return (
-    <section className="relative py-20">
+    <section className="section-wrap">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: false, amount: 0.35 }}
           className="mx-auto mb-10 max-w-3xl text-center"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-500/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-cyan-100">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-red-500/50 bg-red-500/15 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
             <Sparkles className="h-4 w-4" />
             Smart Batch Recommender
           </div>
-          <h2 className="font-display text-5xl text-white sm:text-6xl">Find Your Perfect Batch</h2>
-          <p className="mt-4 text-slate-300">
+          <h2 className="section-title">Find Your Perfect Batch</h2>
+          <p className="section-lead">
             Answer three quick questions and get your ideal class timing instantly.
           </p>
         </motion.div>
@@ -84,13 +85,13 @@ export default function BatchRecommender() {
         {!recommendation ? (
           <Card className="mx-auto max-w-3xl rounded-3xl p-6 sm:p-8">
             <div className="mb-6">
-              <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.18em] text-slate-300">
+              <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.18em] text-white">
                 <span>Step {step + 1}</span>
                 <span>{Math.round(progress)}% complete</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-white/10">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-cyan-400 to-pink-400"
+                  className="h-full bg-gradient-to-r from-red-500 to-red-600"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                 />
@@ -106,7 +107,7 @@ export default function BatchRecommender() {
                   whileTap={{ scale: 0.98 }}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => handleSelect(option)}
-                  className="beat-reactive rounded-xl border border-cyan-300/25 bg-slate-900/40 px-4 py-3 text-left text-white transition-all hover:border-pink-300/35 hover:bg-pink-500/10"
+                  className="beat-reactive rounded-xl border border-red-500/35 bg-black/40 px-4 py-3 text-left text-white transition-all hover:border-red-400/50 hover:bg-red-500/15"
                 >
                   {option}
                 </motion.button>
@@ -121,26 +122,26 @@ export default function BatchRecommender() {
           >
             <Card className="rounded-3xl p-7" gradient>
               <h3 className="text-3xl font-semibold text-white">Your Recommended Batch</h3>
-              <p className="mt-2 text-slate-200">Matched for your age, goal, and current skill level.</p>
+              <p className="mt-2 text-white/90">Matched for your age, goal, and current skill level.</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-white/15 bg-slate-900/55 p-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">Batch</p>
+                <div className="rounded-xl border border-red-500/30 bg-black/50 p-4">
+                  <p className="text-xs uppercase tracking-[0.18em] text-red-300">Batch</p>
                   <p className="mt-1 text-xl font-semibold text-white">{recommendation.name}</p>
-                  <p className="mt-1 text-sm text-slate-300">{recommendation.style}</p>
+                  <p className="mt-1 text-sm text-white">{recommendation.style}</p>
                 </div>
 
-                <div className="rounded-xl border border-white/15 bg-slate-900/55 p-4">
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-200">Seats Left</p>
-                  <p className="mt-1 text-xl font-semibold text-pink-200">Only {recommendation.seatsLeft}</p>
-                  <p className="mt-1 text-sm text-slate-300">Limited entries this cycle</p>
+                <div className="rounded-xl border border-red-500/30 bg-black/50 p-4">
+                  <p className="text-xs uppercase tracking-[0.18em] text-red-300">Seats Left</p>
+                  <p className="mt-1 text-xl font-semibold text-red-200">Only {recommendation.seatsLeft}</p>
+                  <p className="mt-1 text-sm text-white">Limited entries this cycle</p>
                 </div>
               </div>
 
-              <div className="mt-6 space-y-2 text-sm text-slate-200">
-                <p className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-cyan-200" /> {recommendation.time}</p>
-                <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-cyan-200" /> {recommendation.days}</p>
-                <p className="flex items-center gap-2"><Users className="h-4 w-4 text-cyan-200" /> Level: {recommendation.level}</p>
+              <div className="mt-6 space-y-2 text-sm text-white">
+                <p className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-red-300" /> {recommendation.time}</p>
+                <p className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-red-300" /> {recommendation.days}</p>
+                <p className="flex items-center gap-2"><Users className="h-4 w-4 text-red-300" /> Level: {recommendation.level}</p>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function LoadingAnimation() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
       <div className="text-center">
         <motion.div
           animate={{
@@ -16,9 +16,9 @@ export default function LoadingAnimation() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="mx-auto mb-6 h-20 w-20 rounded-full bg-gradient-to-br from-cyan-500 to-pink-500 p-[2px]"
+          className="mx-auto mb-6 h-20 w-20 rounded-full bg-gradient-to-br from-red-500 to-red-600 p-[2px]"
         >
-          <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-950 font-display text-4xl text-white">AF</div>
+          <div className="flex h-full w-full items-center justify-center rounded-full bg-black font-display text-4xl text-white">AF</div>
         </motion.div>
         <motion.h2
           animate={{
@@ -33,7 +33,7 @@ export default function LoadingAnimation() {
         >
           FEEL THE BEAT
         </motion.h2>
-        <p className="mt-2 text-xs uppercase tracking-[0.28em] text-cyan-200/70">Khanda Colony, Panvel</p>
+        <p className="mt-2 text-xs uppercase tracking-[0.28em] text-red-300/70">Khanda Colony, Panvel</p>
         <div className="mt-6 flex justify-center gap-2">
           {[0, 1, 2].map((i) => (
             <motion.div
@@ -46,7 +46,7 @@ export default function LoadingAnimation() {
                 repeat: Infinity,
                 delay: i * 0.16,
               }}
-              className="h-2.5 w-2.5 rounded-full bg-cyan-400"
+              className="h-2.5 w-2.5 rounded-full bg-red-500"
             />
           ))}
         </div>

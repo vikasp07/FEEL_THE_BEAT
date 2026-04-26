@@ -48,12 +48,12 @@ export default function DanceQuiz() {
 
   if (!started && !result) {
     return (
-      <section className="relative py-20">
+      <section className="section-wrap">
         <div className="site-container">
           <Card className="mx-auto max-w-3xl rounded-3xl p-8 text-center" gradient>
-            <Brain className="mx-auto h-10 w-10 text-cyan-200" />
-            <h2 className="font-display mt-4 text-5xl text-white sm:text-6xl">Dance Style Quiz</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-slate-200">
+            <Brain className="mx-auto h-10 w-10 text-red-300" />
+            <h2 className="section-title mt-4">Dance Style Quiz</h2>
+            <p className="section-lead mt-3 text-white/90">
               Six rapid-fire questions to discover your signature style and suggested batch.
             </p>
             <Button onClick={() => setStarted(true)} className="mt-8" size="lg">
@@ -69,22 +69,22 @@ export default function DanceQuiz() {
     const quizResult = quizResults[result];
 
     return (
-      <section className="relative py-20">
+      <section className="section-wrap">
         <div className="site-container">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-4xl">
             <Card className="rounded-3xl p-6 sm:p-8">
               <div className="grid gap-6 md:grid-cols-[1fr_1.1fr] md:items-center">
                 <div className="relative h-64 overflow-hidden rounded-2xl border border-white/10">
-                  <Image src={quizResult.image} alt={`${quizResult.style} dance style result`} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                  <Image src={quizResult.image} alt={`${quizResult.style} dance style result`} fill sizes="(max-width: 768px) 100vw, 45vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
 
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-cyan-200">Your Style Match</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-red-300">Your Style Match</p>
                   <h3 className="mt-2 text-4xl font-semibold text-white">{quizResult.style}</h3>
-                  <p className="mt-3 text-sm text-slate-300">{quizResult.description}</p>
+                  <p className="mt-3 text-sm text-white/80">{quizResult.description}</p>
 
-                  <div className="mt-4 rounded-xl border border-pink-300/35 bg-pink-500/10 p-3 text-sm text-pink-100">
+                  <div className="mt-4 rounded-xl border border-red-500/40 bg-red-500/15 p-3 text-sm text-red-200">
                     Suggested Batch: {quizResult.recommendedBatch}
                   </div>
 
@@ -104,17 +104,17 @@ export default function DanceQuiz() {
   }
 
   return (
-    <section className="relative py-20">
+    <section className="section-wrap">
       <div className="site-container">
         <Card className="mx-auto max-w-3xl rounded-3xl p-6 sm:p-8">
           <div className="mb-6">
-            <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-slate-300">
+            <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-white/80">
               <span>Question {currentQuestion + 1}</span>
               <span>{Math.round(progress)}% Complete</span>
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-white/10">
               <motion.div
-                className="h-full bg-gradient-to-r from-pink-400 via-violet-400 to-cyan-400"
+                className="h-full bg-gradient-to-r from-red-400 via-red-500 to-red-600"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
               />
@@ -136,7 +136,7 @@ export default function DanceQuiz() {
                     key={option.text}
                     type="button"
                     onClick={() => choose(option.value)}
-                    className="beat-reactive w-full rounded-xl border border-white/15 bg-slate-900/45 px-4 py-3 text-left text-white transition-all hover:border-cyan-300/35 hover:bg-cyan-500/10"
+                    className="beat-reactive w-full rounded-xl border border-red-500/30 bg-black/40 px-4 py-3 text-left text-white transition-all hover:border-red-400/50 hover:bg-red-500/15"
                   >
                     <span className="mr-2">{option.emoji}</span>
                     {option.text}

@@ -10,6 +10,11 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'brand-red': '#ff0000',
+        'brand-black': '#000000',
+        'brand-white': '#ffffff',
+        'dark-red': '#cc0000',
+        'light-red': '#ff3333',
       },
       animation: {
         'beat': 'beat 1s ease-in-out infinite',

@@ -12,7 +12,7 @@ interface CardProps {
 
 export default function Card({ children, className = "", hover = true, gradient = false }: CardProps) {
   const baseStyles = gradient
-    ? "glass-card rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-pink-500/15 p-6"
+    ? "glass-card rounded-2xl bg-gradient-to-br from-red-500/15 via-red-600/10 to-red-700/15 p-6"
     : "glass-card rounded-2xl p-6";
 
   return (

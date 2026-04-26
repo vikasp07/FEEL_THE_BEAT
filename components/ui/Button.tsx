@@ -27,13 +27,13 @@ export default function Button({
   
   const variants = {
     primary:
-      "bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500 text-white shadow-lg shadow-cyan-500/20 hover:shadow-pink-500/30",
+      "bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white shadow-lg shadow-red-500/20 hover:shadow-red-600/30",
     secondary:
-      "bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/25 hover:shadow-violet-500/35",
+      "bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25 hover:shadow-red-600/35",
     outline:
-      "border border-cyan-300/50 bg-cyan-400/5 text-cyan-100 hover:border-pink-300/60 hover:bg-pink-400/10",
+      "border border-red-500/50 bg-red-400/5 text-red-200 hover:border-red-400/60 hover:bg-red-400/10",
     ghost:
-      "border border-white/10 bg-white/5 text-white/85 hover:border-cyan-200/40 hover:bg-white/10",
+      "border border-white/10 bg-white/5 text-white/85 hover:border-red-200/40 hover:bg-white/10",
   };
   
   const sizes = {
